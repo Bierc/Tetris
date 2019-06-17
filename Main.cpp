@@ -1,16 +1,26 @@
 #include <iostream>
 #include<SFML/Graphics.hpp>
-#include<Menu.h>
-#include<Instruções.h>
+#include<SFML/Audio.hpp>
+#include"Include\Menu.h"
+#include"Include\Instruções.h"
+#include"Include\Jogo.h"
+#include"include/Pecas.h"
 
 using namespace std;
 
 int main()
 {
+
     sf::RenderWindow window(sf::VideoMode(800,800), "Tetris");
     Menu menu(window.getSize().x, window.getSize().y);
     Instrucoes inst(window.getSize().x, window.getSize().y);
+    Jogo jogo(window.getSize().x, window.getSize().y);
+    sf::Music music;
+	Pecas p;
     int a=0;
+	if (!music.openFromFile("music_menu.ogg"))
+		return -1; // error
+    music.play();
     while(window.isOpen()) {
     while(1) {
 
@@ -33,7 +43,7 @@ int main()
                 case sf::Keyboard::Return:
                     switch(menu.GetPressedItem()) {
                     case 0:
-                        cout << "jogar" << endl;
+                        a=4;
                         break;
                     case 1:
                         a=1;
@@ -57,15 +67,17 @@ int main()
         window.clear(sf::Color::Blue);
         menu.draw(window);
         window.display();
+
         break;
 
     case 1:
         inst.printtela(&window, &a);
         break;
 
-    case 2:
-        cout << "recordes" << endl;
-        a = 0;
+    case 4:
+		music.stop();
+		jogo.printtela(&window, &a, event);
+		music.play();
         break;
 
 
@@ -75,6 +87,5 @@ int main()
 
     }
     }
-
          return 0;
         }
