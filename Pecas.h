@@ -11,8 +11,8 @@ class Pecas
 		Pecas();
 		void rotate();
 		void Moving(int k);
-		void draw(sf::RenderWindow *window );
-		void verificaMovimento(sf::Event event);
+		void draw(sf::RenderWindow &window );
+		void Bulding(int k);
 		struct posicao
 		{
 			int x;
@@ -37,3 +37,4 @@ class Pecas
 };
 
 #endif // PECAS_H
+
