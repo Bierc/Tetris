@@ -10,20 +10,21 @@ Pecas::Pecas()
 	}
 
 	
+void Pecas::Bulding(int k) {
+	
+		for (int i = 0; i < 4;i++) {
+			a[i].x = Figuras[k][i] % 2;
+			a[i].y = Figuras[k][i] / 2;
+		}
+}
 
-
-void Pecas::draw(sf::RenderWindow *window)
+void Pecas::draw(sf::RenderWindow &window)
 {
-	int n=2;
-	for (int i = 0; i < 4;i++) {
-		a[i].x = Figuras[n][i] % 2;
-		a[i].y = Figuras[n][i] / 2;
-	}
+	
 	for (int i = 0; i < 4; i++) {
 		s.setPosition(a[i].x * 18,a[i].y * 18);
-		window -> draw(s);
+		window.draw(s);
 	}
-	window->display();
 }
 
 void Pecas::rotate() {
@@ -43,21 +44,4 @@ void Pecas::Moving(int k) {
 	}
 }
 
-void Pecas::verificaMovimento(sf::Event event) {
-	int x = 0;
-	bool rotacionar = 0;
-	if (event.type == sf::Event::KeyPressed) {
-		if (event.key.code == sf::Keyboard::Space) rotate();
-		else if (event.key.code == sf::Keyboard::Right) {
-			x = 1;
-			Moving(x);
-		}
-		else if (event.key.code == sf::Keyboard::Left) {
-			x = -1;
-			Moving(x);
 
-		}
-	}
-
-
-}
