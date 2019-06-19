@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 
 #define MAX_NUMBER_OF_ITEMS 4
 
@@ -9,7 +10,7 @@ class Menu
     public:
         Menu(float width , float height);
         ~Menu();
-
+		int Run(sf::RenderWindow &window);
         void draw(sf::RenderWindow &window);
         void MoveUp();
         void MoveDown();
@@ -19,6 +20,7 @@ class Menu
         int SelectedItemIndex;
         sf::Font font;
         sf::Text menu[MAX_NUMBER_OF_ITEMS];
+		sf::Music Menu_music;
 };
 
 #endif // MENU_H
