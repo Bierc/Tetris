@@ -4,6 +4,8 @@
 
 
 
+
+
 class Pecas
 {
 
@@ -13,6 +15,9 @@ class Pecas
 		void Moving(int k);
 		void draw(sf::RenderWindow &window );
 		void Bulding(int k);
+		void down(float &k , float b);
+		bool check();
+		int campo[20][10] = { 0 };
 		struct posicao
 		{
 			int x;
@@ -22,7 +27,8 @@ class Pecas
     private:
 		sf::Texture text;
 		sf::Sprite s;
-		
+		const int Y = 20;
+		const int X = 10;
 		int Figuras[7][4]{
 			1,3,5,7,
 			2,4,5,7,
