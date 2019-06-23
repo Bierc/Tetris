@@ -19,11 +19,17 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 	int x = 0;
 	int n = 3;
 	bool rotacionar = 0;
+	float tempo = 0;
+	float delay = 0.3;
+	
 	pe.Bulding(n);
 	//pe.draw(window);
 	do{
-		
-		
+		float time = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		tempo += time;
+
+		pe.down(tempo, delay);
 		
 		while (window.pollEvent(game_event))
 		{
