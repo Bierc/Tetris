@@ -44,4 +44,22 @@ void Pecas::Moving(int k) {
 	}
 }
 
+void Pecas::down(float &k, float b) {
+	if (k > b) {
+		for (int i = 0; i < 4; i++) { a[i].y += 1; }
+		k = 0;
+	}
 
+}
+
+bool Pecas::check() {
+	for (int i = 0; i < 4; i++) {
+		if (a[i].x < 0 || a[i].x > X || a[i].y > Y) {
+			return 0;
+		}
+		else if (campo[a[i].x][a[i].y]) {
+			return 0;
+		}
+	}
+	return 1;
+}
