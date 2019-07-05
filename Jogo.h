@@ -1,28 +1,25 @@
-#ifndef JOGO_H
-#define JOGO_H
+#pragma once 
 
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include"Pecas.h"
-#include"Instruções.h"
+#include"Instrucoes.h"
 #include"Recordes.h"
 
 
 class Jogo
 {
-    public:
-       // void Tabuleiro(int width, int height);
-		void RunGame(sf::RenderWindow &window , int *b);
-		Jogo(float width , float height);
+public:
+	// void Tabuleiro(int width, int height);
+	void RunGame(sf::RenderWindow &window, int *b);
+	Jogo(float width, float height);
 
-        ~Jogo();
+	~Jogo();
 
 
-    private:
-		Pecas pe;
-		sf::Music music_game;
-		Recordes rec;
+private:
+	Pecas pe;
+	sf::Music music_game;
+	Recordes rec;
 
 };
-
-#endif // JOGO_H
