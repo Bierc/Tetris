@@ -2,28 +2,39 @@
 
 Menu::Menu(float width , float height)
 {
-	if(!font.loadFromFile("YARDSALE.TTF")) {
+	if(!font.loadFromFile("ARCADECLASSIC.TTF")) {
         //Handle error
     }
+	titulo.setFont(font);
+	titulo.setFillColor(sf::Color::Green);
+	titulo.setString("TETRIS");
+	titulo.setCharacterSize(48);
+	auto d = titulo.getLocalBounds();
+	titulo.setPosition(sf::Vector2f((width / 2) - (d.width / 2), height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
+
     menu[0].setFont(font);
     menu[0].setFillColor(sf::Color::Green);
     menu[0].setString("Jogar");
-    menu[0].setPosition(sf::Vector2f(width/2, height/(MAX_NUMBER_OF_ITEMS+1) * 1));
+	auto k = menu[0].getLocalBounds();
+    menu[0].setPosition(sf::Vector2f((width/2) - (k.width/2), height/(MAX_NUMBER_OF_ITEMS+1) * 2));
 
     menu[1].setFont(font);
     menu[1].setFillColor(sf::Color::White);
     menu[1].setString("Instrucoes");
-    menu[1].setPosition(sf::Vector2f(width/2, height/(MAX_NUMBER_OF_ITEMS+1) * 2));
+	auto w = menu[1].getLocalBounds();
+    menu[1].setPosition(sf::Vector2f((width / 2) - (w.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 2.5));
 
     menu[2].setFont(font);
     menu[2].setFillColor(sf::Color::White);
     menu[2].setString("sair");
-    menu[2].setPosition(sf::Vector2f(width/2, height/(MAX_NUMBER_OF_ITEMS+1) * 3));
+	auto g = menu[2].getLocalBounds();
+    menu[2].setPosition(sf::Vector2f((width / 2) - (g.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3));
 
     menu[3].setFont(font);
     menu[3].setFillColor(sf::Color::White);
     menu[3].setString("Recordes");
-    menu[3].setPosition(sf::Vector2f(width/2, height/(MAX_NUMBER_OF_ITEMS+1) * 4));
+	auto l = menu[3].getLocalBounds();
+    menu[3].setPosition(sf::Vector2f((width / 2) - (l.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3.5));
 
     SelectedItemIndex = 0;
 	if (!Menu_music.openFromFile("music_menu.ogg"))
@@ -37,7 +48,7 @@ Menu::~Menu()
     //dtor
 }
 
-int Menu::Run(sf::RenderWindow &window) {
+int Menu::Run(sf::RenderWindow &window, int *b) {
 	sf::Event Menu_event;
 
 	
@@ -63,6 +74,7 @@ int Menu::Run(sf::RenderWindow &window) {
 					break;
 				case 2:
 					window.close();
+					*b = 1;
 					break;
 				case 3:
 					return 2;
@@ -81,11 +93,12 @@ int Menu::Run(sf::RenderWindow &window) {
 	draw(window);
 	window.display();
 
-
+	return 0;
 }
 
 void Menu::draw(sf::RenderWindow &window) {
     int i;
+	window.draw(titulo);
     for(i = 0 ; i< MAX_NUMBER_OF_ITEMS ; i++) {
         window.draw(menu[i]);
     }
@@ -106,3 +119,4 @@ void Menu::MoveDown() {
         menu[SelectedItemIndex].setFillColor(sf::Color::Green);
     }
 }
+
