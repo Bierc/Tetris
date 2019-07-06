@@ -22,6 +22,7 @@ void Pecas::draw(sf::RenderWindow &window)
 {
 	
 	for (int i = 0; i < 4; i++) {
+		s.setTextureRect(sf::IntRect(ColorNum * 18, 0, 18, 18));
 		s.setPosition(a[i].x * 18,a[i].y * 18);
 		window.draw(s);
 	}
@@ -58,7 +59,7 @@ void Pecas::down(float &k, float c) {     // k é o timer
 		
 		if (!check()) {
 			for (int i = 0; i < 4; i++) { campo[b[i].y][b[i].x] = ColorNum; }
-
+			srand(time(0));
 			ColorNum = 1 + rand() % 7;
 			int j = rand() % 7;
 			Bulding(j);
@@ -84,6 +85,7 @@ void Pecas::Funcao(sf::RenderWindow &window) {
 	for (int i = 0; i < M; i++) {
 		for (int j = 0; j < N; j++) {
 			if (campo[i][j] == 0) continue;
+			s.setTextureRect(sf::IntRect(campo[i][j] * 18, 0, 18, 18));
 			s.setPosition(j * 18, i * 18);
 			window.draw(s);
 		}
