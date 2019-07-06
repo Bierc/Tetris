@@ -10,7 +10,7 @@ class Menu
     public:
         Menu(float width , float height);
         ~Menu();
-		int Run(sf::RenderWindow &window);
+		int Run(sf::RenderWindow &window, int *b);
         void draw(sf::RenderWindow &window);
         void MoveUp();
         void MoveDown();
@@ -20,6 +20,7 @@ class Menu
         int SelectedItemIndex;
         sf::Font font;
         sf::Text menu[MAX_NUMBER_OF_ITEMS];
+		sf::Text titulo;
 		sf::Music Menu_music;
 };
 
