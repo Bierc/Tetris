@@ -1,12 +1,12 @@
 #include "Instruções.h"
 
 Instrucoes::Instrucoes(float width, float height)
-{
+{	
     if(!font1.loadFromFile("YARDSALE.TTF")) {
         //hadle error
     }
         text1.setFont(font1);
-        text1.setColor(sf::Color::Green);
+        text1.setFillColor(sf::Color::Green);
         text1.setString("instruções aqui....");
         text1.setPosition(sf::Vector2f(width/4 , height/2));
 
