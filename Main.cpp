@@ -10,18 +10,21 @@ using namespace std;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800,800), "Tetris");
+	sf::RenderWindow window(sf::VideoMode(800,800), "Tetris");
     Instrucoes inst(window.getSize().x, window.getSize().y);
     Menu menu(window.getSize().x, window.getSize().y);
 	Jogo jogo(window.getSize().x, window.getSize().y);
+	Recordes rec;
+	rec.iniciar(window.getSize().x, window.getSize().y);
     int a = 0 ;
+	int b = 0;
     while(window.isOpen()) {
-    while(1) {
+    while(b == 0) {
 
     switch(a) {
     case 0:
 	{
-		a = menu.Run(window);
+		a = menu.Run(window, &b);
 		break;
 	}
         
@@ -39,13 +42,15 @@ int main()
 	}
 		break;
 
+	case 2:
+		rec.LeRecordes(window , &a);
 
     }
 
-
+	
 
     }
+	
     }
          return 0;
         }
-
