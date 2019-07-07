@@ -24,8 +24,11 @@ class Jogo
 		Recordes rec;
 		sf::Clock clock;
 		sf::Font font;
+		sf::Texture background_texture;
+		sf::Sprite background_sprite;
 		sf::Text score;
-		int pontos = 0;
+		sf::Text temporizador_text;
+		int pontos;
 
 };
 
