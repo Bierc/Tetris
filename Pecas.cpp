@@ -6,6 +6,9 @@ Pecas::Pecas()
 	text.loadFromFile("tiles.png");
 	s.setTexture(text);
 	s.setTextureRect(sf::IntRect(0, 0, 18, 18));
+	//ProxPeca_texture.loadFromFile("tiles.png");
+	//ProximaPeca_sprite.setTexture(text);
+	//ProximaPeca_sprite.setTextureRect(sf::IntRect(0, 0, 18, 18));
 
 	}
 
@@ -31,7 +34,6 @@ void Pecas::draw(sf::RenderWindow &window)
 void Pecas::rotate() {
 	posicao p = a[1];
 	for (int i = 0; i < 4; i++) {
-		// eu fi
 		int j = a[i].y - p.y;
 		int k = a[i].x - p.x;
 		a[i].x = p.x - j;
@@ -53,16 +55,26 @@ void Pecas::Moving(int k) {
 	}
 }
 
-void Pecas::down(float &k, float c) {     // k é o timer
+void Pecas::down(float &k, float c , int *p) {     // k é o timer
 	if (k > c) {
 		for (int i = 0; i < 4; i++) { b[i] = a[i]; a[i].y += 1; }
 		
-		if (!check()) {
+		if (!check()) {	
 			for (int i = 0; i < 4; i++) { campo[b[i].y][b[i].x] = ColorNum; }
 			srand(time(0));
 			ColorNum = 1 + rand() % 7;
-			int j = rand() % 7;
+			int j = rand() % 7; //nova peça 
 			Bulding(j);
+			int q = M - 1;
+			for (int i = M - 1; i > 0; i--) {
+				int  count = 0;
+				for (int j = 0; j < N; j++) {
+					if (campo[i][j]) { count++;}
+					campo[q][j] = campo[i][j];
+					*p += 10;
+				}
+				if (count < N) { q--; }
+			}
 		}
 		k = 0;
 	}
@@ -91,3 +103,4 @@ void Pecas::Funcao(sf::RenderWindow &window) {
 		}
 	}
 }
+
