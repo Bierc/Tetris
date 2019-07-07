@@ -16,22 +16,25 @@ class Pecas
 		void Moving(int k);
 		void draw(sf::RenderWindow &window );
 		void Bulding(int k);
-		void down(float &k , float c);
+		void down(float &k , float c , int *p);
 		bool check();
 		void Funcao(sf::RenderWindow &window);
-		int campo[20][10] = { 0 };
+		//int ProximaPeca(sf::RenderWindow &window, int k);
+		int campo[40][19] = { 0 };
 		struct posicao
 		{
 			int x;
 			int y;
-		}a[4] , b[4];
+		}a[4] , b[4] , f[4];
 		int ColorNum = 1;
 
     private:
 		sf::Texture text;
 		sf::Sprite s;
-		const int M = 20;
-		const int N = 10;
+		//sf::Texture ProxPeca_texture;
+		//sf::Sprite ProximaPeca_sprite;
+		const int M = 40;
+		const int N = 19;
 		int Figuras[7][4]{
 			1,3,5,7,
 			2,4,5,7,
@@ -46,4 +49,5 @@ class Pecas
 };
 
 #endif // PECAS_H
+
 
