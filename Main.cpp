@@ -37,7 +37,7 @@ int main()
 
 
 	case 4: {
-		
+		Jogo jogo(window.getSize().x, window.getSize().y);
 		jogo.RunGame(window, &a);
 	}
 		break;
@@ -54,3 +54,4 @@ int main()
     }
          return 0;
         }
+
