@@ -25,8 +25,14 @@ void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 	int posicao;
 	FILE *myfile;
 	fopen_s(&myfile, "RECORDES.txt", "r");
+	/*if (myfile == 0) {
+		printf_s("The file 'myfile' was opened\n");
+	}
+	else {
+		printf_s("The file 'myfile' was not opened\n");
+	}*/
 	for (int i = 0; i < 5; i++) {
-		fscanf_s(myfile, "%d        %s        %d", &posicao, j[i].name, 5, &j[i].pontuacao);
+		fscanf_s(myfile, "%d        %s        %d\n", &posicao, j[i].name, 6, &j[i].pontuacao);
 		text_recordes[i].setString(to_string(posicao) + "        " + j[i].name + "          " + to_string(j[i].pontuacao));
 		auto k = text_recordes[i].getLocalBounds();
 		// 
@@ -46,27 +52,21 @@ void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 	} while (*b != 0); 
 }
 
-void Recordes::verifica(sf::RenderWindow &window, int *a){
+void Recordes::verifica(sf::RenderWindow &window, int a){
 	int i, posicao, k = 0;
 	FILE* myfile;
-
-	//int v = sf::Keyboard::A;
-	//v -= sf::Keyboard::A;
-	//v += 'A';
-
-	fopen_s(&myfile,"RECORDES.txt", "r+");
+	fopen_s(&myfile,"RECORDES.txt", "r");
 	for (i = 1; i <= 5; i++) {
-		fscanf_s(myfile, "%d        %s        %d\n", &posicao, j[i].name, 5, &j[i].pontuacao);
+		fscanf_s(myfile,"%d        %s        %d\n", &posicao, j[i].name, 6 ,&j[i].pontuacao);
 		p[k] = j[i];
 		k++;
 	}
 	for (i = 1; i <= 5; i++) {
-		if (*a > j[i].pontuacao) {
-			j[0].pontuacao = *a;
+		if (a > j[i].pontuacao) {
+			j[0].pontuacao = a;
+			for (int u = 0; u < 6; u++) { j[0].name[u] = j[1].name[u]; }
 			p[0] = j[i];
 			j[i] = j[0];
-			EventName(window);
-			for ( int b = 0; b < 5; i++) j[0].name[b] = name[b];
 			break;
 		}
 
@@ -77,48 +77,13 @@ void Recordes::verifica(sf::RenderWindow &window, int *a){
 		j[i] = p[k];
 		k++;
 	}
+	rewind(myfile);
+	fclose(myfile);
+	fopen_s(&myfile, "RECORDES.txt", "w");
 	for ( i = 1; i <= 5; i++) {
-		fprintf_s(myfile, "%d        %s        %d", i, j[i].name, j[i].pontuacao);
+		fprintf_s(myfile, "%d        %s        %d\n", i, j[i].name, j[i].pontuacao);
 	}
 	fclose(myfile);
+	return;
 }
 
-void Recordes::EventName(sf::RenderWindow &window) {
-	sf::Event record_event;
-	sf::Text bateu_recorde;
-	short p = 0;
-	for (int i = 0; i < 4; i++) name[i] = '_';
-	bateu_recorde.setFont(font_recordes);
-	bateu_recorde.setString("Voce bateu o recorde, insira seu nome com 4 caracteres");
-	auto k = bateu_recorde.getLocalBounds();
-	bateu_recorde.setPosition(sf::Vector2f((window.getSize().x / 2) - (k.width / 2), window.getSize().y /3));
-	name_record.setFont(font_recordes);
-
-	while (window.pollEvent(record_event))
-	{
-		if (record_event.type == sf::Event::TextEntered)
-		{
-			if (record_event.key.code == '\b') {
-				if (p > 0) {
-					name[--p] = '_';
-				}
-			}
-			else if (record_event.key.code == '\n') {
-				return;
-			}
-			else if (p < 4) {
-				name[p++] = record_event.key.code;
-			}
-			window.clear();
-			name_record.setString(name);
-			auto c = bateu_recorde.getLocalBounds();
-			name_record.setPosition(sf::Vector2f((window.getSize().x / 2) - (c.width / 2), window.getSize().y / 3));
-			window.draw(bateu_recorde);
-			window.draw(name_record);
-			window.display();
-			// talvez tenha que colocar esses window.display , draw , etc depois dessa chave de baixo
-			}
-
-	}
-
-}
