@@ -50,6 +50,8 @@ void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 			*b = 0;
 		}
 	} while (*b != 0); 
+	rewind(myfile);
+	fclose(myfile);
 }
 
 void Recordes::verifica(sf::RenderWindow &window, int a){
