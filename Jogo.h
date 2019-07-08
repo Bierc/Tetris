@@ -26,6 +26,8 @@ class Jogo
 		sf::Font font;
 		sf::Texture background_texture;
 		sf::Sprite background_sprite;
+		sf::Texture gameover_texture;
+		sf::Sprite gameover_sprite;
 		sf::Text score;
 		sf::Text temporizador_text;
 		int pontos;
