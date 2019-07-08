@@ -15,6 +15,8 @@ Jogo::Jogo(float width , float height)
 	temporizador_text.setCharacterSize(24);
 	background_texture.loadFromFile("background.png");
 	background_sprite.setTexture(background_texture);
+	gameover_texture.loadFromFile("GAMEOVER.jpg");
+	gameover_sprite.setTexture(gameover_texture);
 }
 
 Jogo::~Jogo()
@@ -39,29 +41,24 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 	float tempo = 0;
 	float delay = 0.3f;
 	pontos = 0;
+	int game_over = 0;
 	pe.Bulding(n_atual);
 	score.setString("Score  " + to_string(pontos));
 	auto k = score.getLocalBounds();
 	score.setPosition(sf::Vector2f((window.getSize().x / 2) - (k.width / 2), window.getSize().y / 6));
-	//int z = 0;
+	int ola = 0;
 	
 	do{
 		float time = clock.getElapsedTime().asSeconds();
 		//sf::Time second = sf::seconds(0.1f);
 		int ti = clock2.getElapsedTime().asSeconds();
 		//float ti = temporizador.asSeconds();
-		temporizador_text.setString("Tempo " + to_string(ti));
+		temporizador_text.setString("Time " + to_string(ti));
 		auto r = score.getLocalBounds();
 		temporizador_text.setPosition(sf::Vector2f((window.getSize().x / 2) - (r.width / 2), window.getSize().y / 5));
 		clock.restart();
 		tempo += time;
-		/*if (z == 0) { z++; }
-		else {
-			
-			n_proximo = rand() % 7;
-			pe.ProximaPeca(window, n_proximo);
-		} */
-		pe.down(tempo, delay, &pontos);         // descer a peça
+		pe.down(tempo, delay, &pontos , &game_over);         // descer a peça
 		score.setString("Score  " + to_string(pontos));
 		auto k = score.getLocalBounds();
 		score.setPosition(sf::Vector2f((window.getSize().x / 2) - (k.width / 2), window.getSize().y / 6));
@@ -85,9 +82,9 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 				}
 			}
 		}		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) { delay = 0.05f; } // descer mais rápido
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) { delay = 0.01f; } // descer mais rápido
 		else {delay = 0.3f;}
-		window.setKeyRepeatEnabled(false);
+		//window.setKeyRepeatEnabled(false);
 		x = 0; rotacionar = 0;
 		window.clear(sf::Color::White);
 		window.draw(background_sprite);
@@ -96,10 +93,32 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 		window.draw(temporizador_text); //pintar o temporizador
 		pe.draw(window);  //pintar nova peça que vai descer
 		window.display();
+		if (game_over != 0) {  // verifica se houve game over
+			music_game.stop();
+			sf::Music gameover_music;
+			if (!gameover_music.openFromFile("Funeral March.wav"))
+				std::cout << "ERROR " << std::endl; // error
+			gameover_music.play();
+			gameover_music.setLoop(true);
+			do {
+				window.clear(sf::Color::White);
+				window.draw(gameover_sprite);  // informa que o jogador perdeu
+				window.display();
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::O)) {  ola = 1; }
+			} while(ola == 0);
+			gameover_music.stop();
+			rec.verifica(window, pontos);
+			*b = 0;
+		}
+	
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {  // Pause 
 			*b = Pause(window);
+			
 		}
 	} while (*b != 0);
+	
+	
 }
 
 int Jogo::Pause(sf::RenderWindow &window) {
@@ -116,13 +135,13 @@ int Jogo::Pause(sf::RenderWindow &window) {
 	pause_text[0].setString("Pause");
 	auto k = pause_text[0].getLocalBounds();
 	pause_text[0].setPosition(sf::Vector2f((window.getSize().x / 2) - (k.width / 2), window.getSize().y / 4 * 0.5));
-	pause_text[1].setString("Aperte H para retornar");
+	pause_text[1].setString("Press     H     to      return      the      game");
 	auto g = pause_text[1].getLocalBounds();
 	pause_text[1].setPosition(sf::Vector2f((window.getSize().x / 2) - (g.width / 2), window.getSize().y / 4 * 1));
-	pause_text[2].setString("Aperte Esc para voltar ao menu");
+	pause_text[2].setString("Press     Esc      to       quit       the       game");
 	auto l = pause_text[2].getLocalBounds();
 	pause_text[2].setPosition(sf::Vector2f((window.getSize().x / 2) - (l.width / 2), window.getSize().y / 4 * 1.5));
-	pause_text[3].setString("Aperte K para desligar ou retornar a musica");
+	pause_text[3].setString("Press     K     to      turn      off      or     on      the     music");
 	auto w = pause_text[3].getLocalBounds();
 	pause_text[3].setPosition(sf::Vector2f((window.getSize().x / 2) - (w.width / 2), window.getSize().y / 4 * 2));
 
