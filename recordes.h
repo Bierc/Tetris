@@ -15,11 +15,10 @@ class Recordes
     public:
 		void iniciar(float width, float height);
         ~Recordes();
-        void verifica(sf::RenderWindow &window, int *a);
-        void EventName(sf::RenderWindow &window);
+        void verifica(sf::RenderWindow &window, int a);
 		void LeRecordes(sf::RenderWindow &window, int *b);
 		struct jogador {
-			char name[5];
+			char name[6];
 			int pontuacao;
 		}p[5] , j[5];
 
