@@ -27,6 +27,7 @@ void Pecas::draw(sf::RenderWindow &window)
 	for (int i = 0; i < 4; i++) {
 		s.setTextureRect(sf::IntRect(ColorNum * 18, 0, 18, 18));
 		s.setPosition(a[i].x * 18,a[i].y * 18);
+		s.move(10, 18);
 		window.draw(s);
 	}
 }
@@ -55,7 +56,7 @@ void Pecas::Moving(int k) {
 	}
 }
 
-void Pecas::down(float &k, float c , int *p) {     // k é o timer
+void Pecas::down(float &k, float c , int *p , int *game_over) {     // k é o timer
 	if (k > c) {
 		for (int i = 0; i < 4; i++) { b[i] = a[i]; a[i].y += 1; }
 		
@@ -65,15 +66,22 @@ void Pecas::down(float &k, float c , int *p) {     // k é o timer
 			ColorNum = 1 + rand() % 7;
 			int j = rand() % 7; //nova peça 
 			Bulding(j);
-			int q = M - 1;
+			int q = M - 1;                           // M = altura    N = largura 
 			for (int i = M - 1; i > 0; i--) {
 				int  count = 0;
 				for (int j = 0; j < N; j++) {
 					if (campo[i][j]) { count++;}
 					campo[q][j] = campo[i][j];
-					*p += 10;
 				}
 				if (count < N) { q--; }
+				if (count >= N) {
+					*p += 10;
+				}
+			}
+			// fim de Jogo 
+			if (campo[1][0] || campo[1][1]) {
+				*game_over = 5;
+				
 			}
 		}
 		k = 0;
@@ -99,6 +107,7 @@ void Pecas::Funcao(sf::RenderWindow &window) {
 			if (campo[i][j] == 0) continue;
 			s.setTextureRect(sf::IntRect(campo[i][j] * 18, 0, 18, 18));
 			s.setPosition(j * 18, i * 18);
+			s.move(10, 18);
 			window.draw(s);
 		}
 	}
