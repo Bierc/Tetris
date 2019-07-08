@@ -14,25 +14,25 @@ Menu::Menu(float width , float height)
 
     menu[0].setFont(font);
     menu[0].setFillColor(sf::Color::Green);
-    menu[0].setString("Jogar");
+    menu[0].setString("Play");
 	auto k = menu[0].getLocalBounds();
     menu[0].setPosition(sf::Vector2f((width/2) - (k.width/2), height/(MAX_NUMBER_OF_ITEMS+1) * 2));
 
     menu[1].setFont(font);
     menu[1].setFillColor(sf::Color::White);
-    menu[1].setString("Instrucoes");
+    menu[1].setString("Instructions");
 	auto w = menu[1].getLocalBounds();
     menu[1].setPosition(sf::Vector2f((width / 2) - (w.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 2.5));
 
     menu[2].setFont(font);
     menu[2].setFillColor(sf::Color::White);
-    menu[2].setString("sair");
+    menu[2].setString("Quit");
 	auto g = menu[2].getLocalBounds();
     menu[2].setPosition(sf::Vector2f((width / 2) - (g.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3));
 
     menu[3].setFont(font);
     menu[3].setFillColor(sf::Color::White);
-    menu[3].setString("Recordes");
+    menu[3].setString("Records");
 	auto l = menu[3].getLocalBounds();
     menu[3].setPosition(sf::Vector2f((width / 2) - (l.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3.5));
 
@@ -119,4 +119,3 @@ void Menu::MoveDown() {
         menu[SelectedItemIndex].setFillColor(sf::Color::Green);
     }
 }
-
