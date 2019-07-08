@@ -22,6 +22,9 @@ class Menu
         sf::Text menu[MAX_NUMBER_OF_ITEMS];
 		sf::Text titulo;
 		sf::Music Menu_music;
+		/*Jogo jo;
+		Recordes rec_menu;
+		Instrucoes inst;*/
 };
 
 #endif // MENU_H
