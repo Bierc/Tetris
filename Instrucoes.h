@@ -12,10 +12,7 @@ class Instrucoes
 
     private:
         sf::Font font1;
-		sf::Text text1;
-		sf::Text text2;
-		sf::Text text3;
-		sf::Text text4;
+	sf::Text text1[5];
 };
 
 #endif // INSTRUçõES_H
