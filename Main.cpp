@@ -1,9 +1,9 @@
 #include <iostream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
-#include"Include\Menu.h"
-#include"Include\Instruções.h"
-#include"Include\Jogo.h"
+#include"Include/Menu.h"
+#include"Include/Instruções.h"
+#include"Include/Jogo.h"
 #include"include/Pecas.h"
 
 using namespace std;
