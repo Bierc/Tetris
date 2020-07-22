@@ -1,4 +1,4 @@
-#include "..\include\Recordes.h"
+#include "recordes.h"
 
 void Recordes::iniciar(float width, float height)
 {
@@ -24,7 +24,7 @@ Recordes::~Recordes()
 void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 	int posicao;
 	FILE *myfile;
-	fopen_s(&myfile, "RECORDES.txt", "r");
+//	fopen_s(&myfile, "RECORDES.txt", "r");
 	/*if (myfile == 0) {
 		printf_s("The file 'myfile' was opened\n");
 	}
@@ -32,7 +32,7 @@ void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 		printf_s("The file 'myfile' was not opened\n");
 	}*/
 	for (int i = 0; i < 5; i++) {
-		fscanf_s(myfile, "%d        %s        %d\n", &posicao, j[i].name, 6, &j[i].pontuacao);
+		//fscanf(myfile, "%d        %s        %d\n", &posicao, j[i].name, 6, &j[i].pontuacao);
 		text_recordes[i].setString(to_string(posicao) + "        " + j[i].name + "          " + to_string(j[i].pontuacao));
 		auto k = text_recordes[i].getLocalBounds();
 		// 
@@ -57,9 +57,9 @@ void Recordes::LeRecordes(sf::RenderWindow &window ,int *b) {
 void Recordes::verifica(sf::RenderWindow &window, int a){
 	int i, posicao, k = 0;
 	FILE* myfile;
-	fopen_s(&myfile,"RECORDES.txt", "r");
+//	fopen_s(&myfile,"RECORDES.txt", "r");
 	for (i = 1; i <= 5; i++) {
-		fscanf_s(myfile,"%d        %s        %d\n", &posicao, j[i].name, 6 ,&j[i].pontuacao);
+		//fscanf(myfile,"%d        %s        %d\n", &posicao, j[i].name, 6 ,&j[i].pontuacao);
 		p[k] = j[i];
 		k++;
 	}
@@ -81,9 +81,9 @@ void Recordes::verifica(sf::RenderWindow &window, int a){
 	}
 	rewind(myfile);
 	fclose(myfile);
-	fopen_s(&myfile, "RECORDES.txt", "w");
+//	fopen_s(&myfile, "RECORDES.txt", "w");
 	for ( i = 1; i <= 5; i++) {
-		fprintf_s(myfile, "%d        %s        %d\n", i, j[i].name, j[i].pontuacao);
+		//fprintf(myfile, "%d        %s        %d\n", i, j[i].name, j[i].pontuacao);
 	}
 	fclose(myfile);
 	return;

@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef PECAS_H
+#define PECAS_H
 #include<SFML/Graphics.hpp>
 #include<stdlib.h>
 #include<stdio.h>

@@ -1,5 +1,5 @@
-#ifndef INSTRUçõES_H
-#define INSTRUçõES_H
+#ifndef INSTRUCOES_H
+#define INSTRUCOES_H
 #include<SFML/Graphics.hpp>
 
 

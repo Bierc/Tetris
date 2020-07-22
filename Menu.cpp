@@ -1,4 +1,4 @@
-#include "..\include\Menu.h"
+#include "Menu.h"
 
 Menu::Menu(float width , float height)
 {
@@ -37,7 +37,7 @@ Menu::Menu(float width , float height)
     menu[3].setPosition(sf::Vector2f((width / 2) - (l.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3.5));
 
     SelectedItemIndex = 0;
-	if (!Menu_music.openFromFile("music_menu.ogg"))
+	if (!Menu_music.openFromFile("Audio/music_menu.ogg"))
 		throw "deu ruim";
 
 	Menu_music.play();

@@ -1,4 +1,4 @@
-#include "Instruções.h"
+#include "Instrucoes.h"
 
 Instrucoes::Instrucoes(float width, float height)
 {	

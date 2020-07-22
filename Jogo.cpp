@@ -28,7 +28,7 @@ Jogo::~Jogo()
 
 void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 	sf::Event game_event;
-	if (!music_game.openFromFile("music.ogg"))
+	if (!music_game.openFromFile("Audio/music.ogg"))
 		std::cout << "ERROR " << std::endl; // error
 	music_game.play();
 	music_game.setLoop(true);
@@ -108,7 +108,7 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::O)) {  ola = 1; }
 			} while(ola == 0);
 			gameover_music.stop();
-			rec.verifica(window, pontos);
+			//rec.verifica(window, pontos);
 			*b = 0;
 		}
 	
