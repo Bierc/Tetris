@@ -2,7 +2,7 @@
 
 void Recordes::iniciar(float width, float height)
 {
-	if (!font_recordes.loadFromFile("ARCADECLASSIC.TTF")) {
+	if (!font_recordes.loadFromFile("bin/ARCADECLASSIC.TTF")) {
 		//Handle error
 	}
 	for (int i = 0; i < 5; i++) {

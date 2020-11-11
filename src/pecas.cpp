@@ -1,9 +1,9 @@
-#include "Pecas.h"
+#include "pecas.h"
 
 Pecas::Pecas()
 {	
    //ctor
-	text.loadFromFile("tiles.png");
+	text.loadFromFile("bin/tiles.png");
 	s.setTexture(text);
 	s.setTextureRect(sf::IntRect(0, 0, 18, 18));
 	//ProxPeca_texture.loadFromFile("tiles.png");

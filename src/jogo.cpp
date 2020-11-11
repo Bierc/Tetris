@@ -1,10 +1,10 @@
-#include "Jogo.h"
+#include "jogo.h"
 #include<SFML/Graphics.hpp>
 #include<time.h>
 
 Jogo::Jogo(float width , float height)
 {
-	if (!font.loadFromFile("ARCADECLASSIC.TTF")) {
+	if (!font.loadFromFile("bin/ARCADECLASSIC.TTF")) {
 		//hadle error
 	}
 	score.setFont(font);
@@ -13,9 +13,9 @@ Jogo::Jogo(float width , float height)
 	temporizador_text.setFont(font);
 	temporizador_text.setFillColor(sf::Color::White);
 	temporizador_text.setCharacterSize(24);
-	background_texture.loadFromFile("background.png");
+	background_texture.loadFromFile("bin/background.png");
 	background_sprite.setTexture(background_texture);
-	gameover_texture.loadFromFile("GAMEOVER.jpg");
+	gameover_texture.loadFromFile("bin/GAMEOVER.jpg");
 	gameover_sprite.setTexture(gameover_texture);
 }
 
@@ -28,7 +28,7 @@ Jogo::~Jogo()
 
 void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 	sf::Event game_event;
-	if (!music_game.openFromFile("Audio/music.ogg"))
+	if (!music_game.openFromFile("bin/music.ogg"))
 		std::cout << "ERROR " << std::endl; // error
 	music_game.play();
 	music_game.setLoop(true);
@@ -96,7 +96,7 @@ void Jogo::RunGame(sf::RenderWindow &window , int *b) {
 		if (game_over != 0) {  // verifica se houve game over
 			music_game.stop();
 			sf::Music gameover_music;
-			if (!gameover_music.openFromFile("Funeral March.wav"))
+			if (!gameover_music.openFromFile("bin/Funeral March.wav"))
 				std::cout << "ERROR " << std::endl; // error
 			gameover_music.play();
 			gameover_music.setLoop(true);
@@ -125,7 +125,7 @@ int Jogo::Pause(sf::RenderWindow &window) {
 	sf::Event pause_event;
 	sf::Text pause_text[4];
 	int c; 
-	if (!font.loadFromFile("ARCADECLASSIC.TTF")) {
+	if (!font.loadFromFile("bin/CLASSIC.TTF")) {
 		//hadle error
 	}
 	for (int i = 0; i < 4; i++) {

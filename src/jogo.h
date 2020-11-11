@@ -3,8 +3,8 @@
 #define JOGO_H
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
-#include"Pecas.h"
-#include"Instrucoes.h"
+#include"pecas.h"
+#include"instrucoes.h"
 #include"recordes.h"
 #include<stdio.h>
 #include <iostream>

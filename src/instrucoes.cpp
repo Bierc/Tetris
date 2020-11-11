@@ -1,12 +1,13 @@
-#include "Instrucoes.h"
+#include "instrucoes.h"
 
 Instrucoes::Instrucoes(float width, float height)
 {	
-    if(!font1.loadFromFile("ARCADECLASSIC.TTF")) {
+    if(!font1.loadFromFile("bin/ARCADECLASSIC.TTF")) {
         //hadle error
     }
 	for (int i = 0; i < 5; i++) {
 		text1[i].setFont(font1);
+	
 		text1[i].setFillColor(sf::Color::Green);
 		}
         text1[0].setString("right      arrow      to      move      the      block     right");

@@ -6,7 +6,7 @@ CFLAGS=-c
 
 SFMLINCLUDES=-Lsfml-hpp/ -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-ARCHIVESdotO=Main.o Jogo.o Instrucoes.o Menu.o recordes.o Pecas.o
+ARCHIVESdotO=src/main.o src/jogo.o src/instrucoes.o src/menu.o src/recordes.o src/pecas.o
 
 # Now executing the makefile.
 
@@ -15,23 +15,23 @@ all: executavel
 executavel: $(ARCHIVESdotO)
 	$(CC) $(ARCHIVESdotO) -o executavel $(SFMLINCLUDES)
 
-Main.o: Main.cpp
-	$(CC) $(CFLAGS) Main.cpp $(SFMLINCLUDES)
+main.o: src/main.cpp
+	$(CC) $(CFLAGS) src/main.cpp $(SFMLINCLUDES)
 
-Jogo.o: Jogo.cpp
-	$(CC) $(CFLAGS) Jogo.cpp $(SFMLINCLUDES)
+jogo.o: src/jogo.cpp
+	$(CC) $(CFLAGS) src/jogo.cpp $(SFMLINCLUDES)
 
-Menu.o: Menu.cpp
-	$(CC) $(CFLAGS) Menu.cpp $(SFMLINCLUDES)
+menu.o: src/menu.cpp
+	$(CC) $(CFLAGS) src/menu.cpp $(SFMLINCLUDES)
 
-recordes.o: recordes.cpp
-	$(CC) $(CFLAGS) recordes.cpp $(SFMLINCLUDES)
+recordes.o: src/recordes.cpp
+	$(CC) $(CFLAGS) src/recordes.cpp $(SFMLINCLUDES)
 
-Pecas.o: Pecas.cpp
-	$(CC) $(CFLAGS) Pecas.cpp $(SFMLINCLUDES)
+pecas.o: src/pecas.cpp
+	$(CC) $(CFLAGS) src/pecas.cpp $(SFMLINCLUDES)
 
-Instrucoes.o: Instrucoes.cpp
-	$(CC) $(CFLAGS) Instrucoes.cpp $(SFMLINCLUDES)
+instrucoes.o: src/instrucoes.cpp
+	$(CC) $(CFLAGS) src/instrucoes.cpp $(SFMLINCLUDES)
 
 clean:
 	rm -rf *o executavel

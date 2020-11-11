@@ -1,8 +1,8 @@
-#include "Menu.h"
+#include "menu.h"
 
 Menu::Menu(float width , float height)
 {
-	if(!font.loadFromFile("ARCADECLASSIC.TTF")) {
+	if(!font.loadFromFile("bin/ARCADECLASSIC.TTF")) {
         //Handle error
     }
 	titulo.setFont(font);
@@ -37,7 +37,7 @@ Menu::Menu(float width , float height)
     menu[3].setPosition(sf::Vector2f((width / 2) - (l.width / 2), height/(MAX_NUMBER_OF_ITEMS+1) * 3.5));
 
     SelectedItemIndex = 0;
-	if (!Menu_music.openFromFile("Audio/music_menu.ogg"))
+	if (!Menu_music.openFromFile("bin/music_menu.ogg"))
 		throw "deu ruim";
 
 	Menu_music.play();

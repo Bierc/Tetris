@@ -1,10 +1,10 @@
 #include <iostream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
-#include"Menu.h"
-#include"Instrucoes.h"
-#include"Jogo.h"
-#include"Pecas.h"
+#include"menu.h"
+#include"instrucoes.h"
+#include"jogo.h"
+#include"pecas.h"
 
 using namespace std;
 
